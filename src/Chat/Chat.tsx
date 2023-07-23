@@ -86,7 +86,6 @@ const Chat = () => {
 
    useEffect(() => {
         console.log(state.chatReducer.concatID);
-
        if (state.chatReducer.concatID !== undefined) {
         
         const unsub = onSnapshot(doc(db,'userChats',state.chatReducer.concatID as string),(doc) => {
@@ -108,7 +107,7 @@ const Chat = () => {
     })
 
 
-   },[state.messagesReducer.messages])
+   },[state.messagesReducer.messages?.length])
 
 
    useEffect(() => {
@@ -128,15 +127,11 @@ const Chat = () => {
    },[state.chatReducer.currentChat?.uid])
  
 
-   if (state.messagesReducer.messages) {
-       useEffect(() => {
         chatContainerRef.current?.scrollTo({
             behavior:'smooth',
             top: chatContainerRef.current?.scrollHeight as number - (chatContainerRef.current?.clientHeight as number)
         })
     
-       },[state.messagesReducer.messages.length])
-   }
 
 
    const sendHandler = async () => {
@@ -162,13 +157,9 @@ const Chat = () => {
 
    }
   
-   const loadNewChats = async () => {
-    
-   }
+   
 
-   useEffect(() => {
-
-   },[])
+   
 
     
 
